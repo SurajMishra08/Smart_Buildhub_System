@@ -1,1 +1,1 @@
-web: gunicorn Smart_Buildhub_System.wsgi
+web: gunicorn SBH.wsgi
