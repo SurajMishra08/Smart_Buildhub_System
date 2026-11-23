@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
@@ -30,10 +31,18 @@ ALLOWED_HOSTS = os.environ.get(
     'localhost,127.0.0.1'
 ).split(',')
 
-ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
+ALLOWED_HOSTS = [
+    host.strip() for host in ALLOWED_HOSTS if host.strip()
+]
+
+# Automatically add Render domain
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://smart-buildhub-system-hvuj.onrender.com/',
+    'https://smart-buildhub-system-hvuj.onrender.com'
 ]
 
 
