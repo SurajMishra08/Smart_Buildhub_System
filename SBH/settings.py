@@ -21,14 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f+hvnvl(5dly*0x9xnn-m2py3%5@t*^!$xex!&#@b5hk%8a1n5'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
+ALLOWED_HOSTS = os.environ.get(
+    'ALLOWED_HOSTS',
+    'localhost,127.0.0.1'
+).split(',')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
 
-ALLOWED_HOSTS = ["smart-buildhub-system.onrender.com", "localhost", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = [
+    'https://hirehub-wd5t.onrender.com',
+]
 
 
 
