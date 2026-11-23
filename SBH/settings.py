@@ -33,7 +33,7 @@ ALLOWED_HOSTS = os.environ.get(
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://hirehub-wd5t.onrender.com',
+    'https://smart-buildhub-system-hvuj.onrender.com/',
 ]
 
 
